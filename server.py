@@ -14,12 +14,6 @@ def ping() -> str:
 async def health(_: Request):
     return PlainTextResponse("OK")
 
-if __name__ == "__main__":
-    # PlayMCP 같은 “remote 등록”은 HTTP가 정석
-    port = int(os.environ.get("PORT", "8000"))
-    mcp.run(transport="http", host="0.0.0.0", port=port)
-
-
 @mcp.tool
 def make_morning_briefing(sleep_start: str, sleep_end: str) -> str:
     """
@@ -38,3 +32,11 @@ def make_morning_briefing(sleep_start: str, sleep_end: str) -> str:
         "✅ 오늘 한 줄 액션\n"
         "- (MVP) 내일은 ‘주요 이슈 3줄 + 영향(원달러/코스피/미국선물)’까지 넣자"
     )
+
+if __name__ == "__main__":
+    # PlayMCP 같은 “remote 등록”은 HTTP가 정석
+    port = int(os.environ.get("PORT", "8000"))
+    mcp.run(transport="http", host="0.0.0.0", port=port)
+
+
+
